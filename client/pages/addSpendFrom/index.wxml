@@ -1,0 +1,11 @@
+<!--pages/addSpendFrom/index.wxml-->
+<view>报销申请单</view>
+<form bindsubmit='setSpendItem'>
+  <label>项目：<input name='kind'></input></label>
+  <label>金额：<input name='cost'></input></label>
+  <label>时间：<input name='time'></input></label>
+  <label>地点：<input name='where'></input></label>
+  <label>报销人：<input name='who'></input></label>  
+  <button type="primary" form-type='submit' hover-class="other-button-hover"> 提交 </button>
+  <button type="warming" form-type='reset' hover-class="other-button-hover"> 重置 </button>
+</form>

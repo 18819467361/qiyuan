@@ -1,0 +1,23 @@
+<!--pages/main/index.wxml-->
+<view class='title'>祈愿基金</view>
+<view>
+<view><text>总金额：{{total}}</text></view>
+<view>动态图表显示</view>
+</view>
+<view>余额：{{balance}}</view>
+<scroll-view>
+  <view wx:for="{{spendList}}" wx:key='index'>
+    <view>项目：{{item.kind}}</view>
+    <view>
+      <view>金额：{{item.cost}}</view>
+      <view>地点：{{item.where}}</view>
+      <view>时间：{{item.time}}</view>
+      <view>报销人：{{item.who}}</view>
+    </view>  
+  </view>
+</scroll-view>
+<button type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}"
+		disabled="{{disabled}}" bindtap="goSetSpendItem" hover-class="other-button-hover"> 添加一项报销 </button>
+
+
+
