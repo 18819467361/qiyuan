@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/main/index",
     "pages/addSpendFrom/index",    
+    "pages/main/index",
     "pages/index/index",
     "pages/addCgi/addCgi"
   ],

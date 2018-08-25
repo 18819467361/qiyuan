@@ -6,7 +6,8 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-')
+  //  + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -31,7 +32,6 @@ var showSuccess = text => wx.showToast({
 // 显示失败提示
 var showModel = (title, content) => {
     wx.hideToast();
-
     wx.showModal({
         title,
         content: JSON.stringify(content),

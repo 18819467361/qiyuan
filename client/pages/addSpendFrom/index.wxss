@@ -1,1 +1,5 @@
 /* pages/addSpendFrom/index.wxss */
+.button-hover{
+  background-color: rgba(201, 153, 64, 0.74);
+  opacity: 0.7;
+}
