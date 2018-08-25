@@ -1,6 +1,6 @@
 // pages/addSpendFrom/index.js
 var bmap = require('../../libs/bmap-wx.min.js');
-var {formatTime} = require('../../utils/util.js')
+var { formatTime, validateForm} = require('../../utils/util.js')
 var wxMarkerData = [];
 Page({
 
@@ -94,54 +94,64 @@ Page({
   setSpendItem(e) {
     let newItem = e.detail.value;
     console.log(e.detail,'提交表单');
-    wx.getStorage({
-      key: 'itemList',
-      success: function(res) {
-        let itemList = res.data;
-        console.log(itemList,'存储的数据')
-        itemList.push(newItem);
-        wx.setStorage({
-          key: 'itemList',
-          data: itemList,
-          success: function () {
-            wx.showToast({
-              title: '记录成功！',
-              icon: 'success',
-              duration: 1000,
-              success:function() {
-                //记录成功，返回首页
-                setTimeout(()=> {
-                  wx.navigateTo({ url: '../main/index' })
-                },1100)
-              }
-            })
-            console.log('多次存储成功！！！')
-          }
-        })
-      },
-      fail: function(e){
-        let itemList = [];
-        itemList.push(newItem)      
-        wx.setStorage({
-          key: 'itemList',
-          data: itemList,
-          success: function () {
-            wx.showToast({
-              title: '记录成功！',
-              icon: 'success',
-              duration: 1000,
-              success: function () {
-                //记录成功，返回首页
-                setTimeout(() => {
-                  wx.navigateTo({ url: '../main/index' })
-                }, 1100)
-              }
-            })
-            console.log('第一次存储成功！！！')
-          }
-        })
-      }
-    })
+    let verify=validateForm(newItem);
+    if(verify=== true){
+      wx.getStorage({
+        key: 'itemList',
+        success: function (res) {
+          let itemList = res.data;
+          console.log(itemList, '存储的数据')
+          itemList.unshift(newItem);
+          wx.setStorage({
+            key: 'itemList',
+            data: itemList,
+            success: function () {
+              wx.showToast({
+                title: '记录成功！',
+                icon: 'success',
+                duration: 1000,
+                success: function () {
+                  //记录成功，返回首页
+                  setTimeout(() => {
+                    wx.navigateTo({ url: '../main/index' })
+                  }, 1100)
+                }
+              })
+              console.log('多次存储成功！！！')
+            }
+          })
+        },
+        fail: function (e) {
+          let itemList = [];
+          itemList.push(newItem)
+          wx.setStorage({
+            key: 'itemList',
+            data: itemList,
+            success: function () {
+              wx.showToast({
+                title: '记录成功！',
+                icon: 'success',
+                duration: 1000,
+                success: function () {
+                  //记录成功，返回首页
+                  setTimeout(() => {
+                    wx.navigateTo({ url: '../main/index' })
+                  }, 1100)
+                }
+              })
+              console.log('第一次存储成功！！！')
+            }
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: verify,
+        icon: 'none',
+        duration: 1500
+      })
+    }
+    
   },
   setAddress: function (e) {
     console.log('setAddress:', e.detail.value)

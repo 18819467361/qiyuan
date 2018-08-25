@@ -1,1 +1,15 @@
 /* pages/main/index.wxss */
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.scrollDetail{
+  height: 40vh;
+}
+.setBtn{       
+  width: 100vw;
+}

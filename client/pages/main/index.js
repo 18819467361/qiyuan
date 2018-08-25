@@ -1,4 +1,5 @@
 // pages/main/index.js
+var { surplus} = require('../../utils/util.js')
 Page({
 
   /**
@@ -9,10 +10,10 @@ Page({
     balance: 1000,
     spendList: [{
       kind: '糖水',
-      where: '车陂',
+      location: '车陂',
       cost: 12,
-      who:'叶嘉源',
-      when:'2018/8/20'
+      name:'叶嘉源',
+      time:'2018/8/20'
     }],
   },
 
@@ -39,8 +40,9 @@ Page({
     wx.getStorage({
       key: 'itemList',
       success: function(res) {
-        that.setData({spendList:res.data})
-        console.log(this)
+       console.log(res.data,'respond')
+        let balance = surplus(that.data.total, res.data); //剩余资金
+        that.setData({ spendList: res.data,balance: balance});
       },
       fail:function(e){
         console.log(e,'错误信息')
@@ -85,5 +87,17 @@ Page({
   // 添加一项报销
   goSetSpendItem(){
     wx.navigateTo({url:'../addSpendFrom/index'})
+  },
+  //跳转到消费详情页
+  costDetailPage(e) {
+    console.log('跳到:',e);
+    let name = e.currentTarget.dataset.name;
+    let nameCode = 0;
+    if (name=='哥葛'){
+      nameCode = 0;//显示哥葛的报销
+    }else{
+      nameCode = 1;//显示宝贝的报销
+    }
+    wx.navigateTo({ url: '../costDetail/index?name='+nameCode})
   }
 })

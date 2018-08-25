@@ -8,12 +8,12 @@
       {{date}}
     </view>
   </picker></label>
-  <label>地点：<input bindinput="setAddress" name='where' value="{{location}}"></input></label>
-  <label>报销人：<radio-group name='who' class="radio-group">
+  <label>地点：<input bindinput="setAddress" name='location' value="{{location}}"></input></label>
+  <label>报销人：<radio-group name='name' class="radio-group">
   <label wx:key="{{item.name}}" class="radio" wx:for="{{whoes}}">
     <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
   </label>
 </radio-group></label>  
-  <button hover-class="button-hover" type="primary" form-type='submit' hover-class="other-button-hover"> 提交 </button>
-  <button type="warming" form-type='reset' hover-class="other-button-hover" bindtap='initFrom'> 重置 </button>
+  <button hover-class="button-hover" type="primary" form-type='submit' > 提交 </button>
+  <button type="warming" form-type='reset' bindtap='initFrom'> 重置 </button>
 </form>
