@@ -4,21 +4,14 @@
   <view>
     <view>
       <text>总金额：{{total}}</text>
+      <picker bindchange="addTotal" mode="selector" range="{{moneyList}}">加一笔！</picker>
     </view>
     <view>动态图表显示</view>
   </view>
   <view>余额：{{balance}}</view>
   <scroll-view scroll-y='true' class='scrollDetail'>
     <view wx:for="{{spendList}}" wx:key='index'>
-      <view bindtap='costDetailPage' data-name='item.who'>
-        <view>项目：{{item.kind}}</view>
-        <view>
-          <view>金额：{{item.cost}}</view>
-          <view>地点：{{item.location}}</view>
-          <view>时间：{{item.time}}</view>
-          <view>报销人：{{item.name}}</view>
-        </view>
-      </view>
+      <item-list item="{{item}}" bindtap="costDetailPage"></item-list>
     </view>
   </scroll-view>
   <button class='setBtn' type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goSetSpendItem" hover-class="other-button-hover"> 添加一项报销 </button>

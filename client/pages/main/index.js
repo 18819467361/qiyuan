@@ -15,6 +15,7 @@ Page({
       name:'叶嘉源',
       time:'2018/8/20'
     }],
+    moneyList:[100,200,500,1000]
   },
 
   /**
@@ -37,17 +38,8 @@ Page({
   onShow: function() {
     let that = this;
     console.log('页面显示')
-    wx.getStorage({
-      key: 'itemList',
-      success: function(res) {
-       console.log(res.data,'respond')
-        let balance = surplus(that.data.total, res.data); //剩余资金
-        that.setData({ spendList: res.data,balance: balance});
-      },
-      fail:function(e){
-        console.log(e,'错误信息')
-      }
-    })
+    this.getTotal();
+    this.getItemList();
   },
 
   /**
@@ -90,14 +82,77 @@ Page({
   },
   //跳转到消费详情页
   costDetailPage(e) {
-    console.log('跳到:',e);
+    console.log('跳到:', e);
     let name = e.currentTarget.dataset.name;
     let nameCode = 0;
-    if (name=='哥葛'){
+    if (name == '哥葛') {
       nameCode = 0;//显示哥葛的报销
-    }else{
+    } else {
       nameCode = 1;//显示宝贝的报销
     }
-    wx.navigateTo({ url: '../costDetail/index?name='+nameCode})
+    wx.navigateTo({ url: '../costDetail/index?name=' + nameCode })
+  },
+  //增加总额
+  addTotal(e) {
+    console.log('加一笔：',e);
+    switch(e.detail.value){
+      case '0': 
+        this.setData({total: this.data.total + 100});
+        break;
+      case '1':
+        this.setData({ total: this.data.total + 200 });
+        break;  
+      case '2':
+        this.setData({ total: this.data.total + 500 });
+        break;
+      case '3':
+        this.setData({ total: this.data.total + 1000 });
+        break;  
+      default:
+      console.log('添加失败！')  
+    }
+    this.setTotal();
+  },
+  //保存总金额
+  setTotal(){
+    let that = this;
+    wx.setStorage({
+      key: "total",
+      data: that.data.total,
+      success: function () {
+        that.getItemList();//更新余额
+        console.log('保存总金额成功！')
+      }
+    })
+  },
+  //获取总金额
+  getTotal(){
+    let that = this;    
+    wx.getStorage({
+      key: 'total',
+      success: function (res) {
+        console.log(res.data);
+        that.setData({total:res.data});
+      },
+      fail: function () {
+        console.log('本地没有总金额数据哦！')
+      }
+    })
+  },
+  //获取消费列表并计算余额
+  getItemList(){
+    let that = this;
+    wx.getStorage({
+      key: 'itemList',
+      success: function (res) {
+        console.log(res.data, 'respond')
+        let balance = surplus(that.data.total, res.data); //剩余资金
+        that.setData({ spendList: res.data, balance: balance });
+      },
+      fail: function (e) {
+        console.log(e, '错误信息')
+      }
+    })
   }
+
 })

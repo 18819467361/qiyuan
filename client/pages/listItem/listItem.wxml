@@ -1,5 +1,5 @@
 <!--pages/components/listItem.wxml-->
-  <view bindtap='costDetailPage' data-name='item.who'>
+  <view data-name='item.name'>
     <view>项目：{{item.kind}}</view>
     <view>
       <view>金额：{{item.cost}}</view>

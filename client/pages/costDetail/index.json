@@ -1,2 +1,5 @@
 {
+  "usingComponents": {
+    "list-item":"../listItem/listItem"
+  }
 }
