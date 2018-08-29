@@ -1,17 +1,18 @@
 <!--pages/main/index.wxml-->
 <view class='wrapper'>
-  <view class='title'>祈愿基金</view>
   <view>
-    <view>
-      <text>总金额：{{total}}</text>
-      <picker bindchange="addTotal" mode="selector" range="{{moneyList}}">加一笔！</picker>
+    <view class='summary'>
+      <view>
+        <text class='total'>总金额</text>
+        <text class='total'>{{total}}</text>
+        <view class='balance'>余额：{{balance}}</view>
+      </view>
     </view>
-    <view>动态图表显示</view>
+    <picker class='addTotal' bindchange="addTotal" mode="selector" range="{{moneyList}}">加一笔<text>+</text></picker>
   </view>
-  <view>余额：{{balance}}</view>
   <scroll-view scroll-y='true' class='scrollDetail'>
     <view wx:for="{{spendList}}" wx:key='index'>
-      <item-list item="{{item}}" bindtap="costDetailPage"></item-list>
+      <item-list item="{{item}}" data-name="{{item.name}}" bindtap="costDetailPage"></item-list>
     </view>
   </scroll-view>
   <button class='setBtn' type="primary" size="{{defaultSize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="goSetSpendItem" hover-class="other-button-hover"> 添加一项报销 </button>

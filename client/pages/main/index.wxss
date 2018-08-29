@@ -1,5 +1,6 @@
 /* pages/main/index.wxss */
-.wrapper{
+
+.wrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -7,9 +8,32 @@
   justify-content: space-between;
   align-items: stretch;
 }
-.scrollDetail{
-  height: 40vh;
+
+.summary {
+  margin: 50rpx auto;
+  width: 200rpx;
+  height: 200rpx;
+  padding: 50rpx;
+  border: none;
+  background: #1AAD19;
+  border-radius: 150rpx;
+  text-align: center;
+  color: #ffffff;
 }
-.setBtn{       
+
+.total {
+  font-size: 45rpx;
+}
+.addTotal{
+  text-align: center;
+  color: #1AAD19;
+}
+.scrollDetail {
+  height: 50vh;
+  padding:0 40rpx;
+  width: 670rpx
+}
+
+.setBtn {
   width: 100vw;
 }

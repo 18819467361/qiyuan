@@ -1,10 +1,16 @@
 <!--pages/costDetail/index.wxml-->
-<view>
+<view class='title'>
   <text>消费详情</text>
 </view>
-<view>
-  <view>哥葛已报销{{GGCost}}</view>
-  <view>宝贝已报销{{MMCost}}</view>
+<view class='costNav'>
+  <view class="active">
+    <view>哥葛</view>
+    <view class='small'>已报销￥{{GGCost}}</view>
+  </view>
+  <view>
+    <view>宝贝</view>
+    <view class='small'>已报销￥{{MMCost}}</view>
+  </view>
 </view>
 <scroll-view scroll-y='true' class='scrollDetail'>
   <view wx:for="{{GGCostList}}" wx:key='index'>

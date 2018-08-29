@@ -1,1 +1,35 @@
 /* pages/components/listItem.wxss */
+.list-wrapper{
+  font-size:26rpx;
+  color: #8a8a8a;
+}
+.content-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: auto;
+  margin: 6rpx 0 20rpx 0rpx;
+  border: 1rpx solid #1AAD19;
+  padding: 15rpx
+  
+}
+.content-left{
+  display: flex;
+  flex-direction: column;
+  width: 500rpx;
+}
+.content-left-top{
+  display: flex;
+  justify-content: space-between
+}
+.content-left-top view{
+  min-width: 120rpx;
+}
+.contetn-right{
+  width: 200rpx;
+  text-align: center;
+}
+.cost{
+ font-size:32rpx;
+  color: #6b6969;
+}

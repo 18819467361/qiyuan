@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/main/index",    
-    "pages/addSpendFrom/index",   
-    "pages/costDetail/index",
+    "pages/costDetail/index",    
+    "pages/addSpendFrom/index",    
     "pages/index/index",
     "pages/addCgi/addCgi"
   ],

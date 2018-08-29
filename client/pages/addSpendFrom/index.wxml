@@ -1,19 +1,36 @@
 <!--pages/addSpendFrom/index.wxml-->
-<view>报销申请单</view>
-<form bindsubmit='setSpendItem'>
-  <label>项目：<input name='kind'></input></label>
-  <label>金额：<input bindinput='checkMoney' value='{{money}}' name='cost'></input></label>
-  <label>时间：<picker name='time' mode="date" value="{{date}}" start="2016-09-01" end="2022-09-01" bindchange="pickDate">
-    <view class="picker">
-      {{date}}
+<view class='title'>报销申请单</view>
+<view>
+  <form bindsubmit='setSpendItem'>
+    <view class='fromWrapper'>
+      <label>项目：
+        <input class='inputStyle' name='kind'></input>
+      </label>
+      <label>金额：
+        <input class='inputStyle' bindinput='checkMoney' value='{{money}}' name='cost'></input>
+      </label>
+      <label>时间：
+        <picker name='time' mode="date" value="{{date}}" start="2016-09-01" end="2022-09-01" bindchange="pickDate">
+          <view class="picker inputStyle">
+            {{date}}
+          </view>
+        </picker>
+      </label>
+      <label>地点：
+        <input class='inputStyle' bindinput="setAddress" name='location' value="{{location}}"></input>
+      </label>
+      <label>报销人：
+        <radio-group name='name' class="radio-group">
+          <label wx:key="{{item.name}}" class="radio" wx:for="{{whoes}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+          </label>
+        </radio-group>
+      </label>
     </view>
-  </picker></label>
-  <label>地点：<input bindinput="setAddress" name='location' value="{{location}}"></input></label>
-  <label>报销人：<radio-group name='name' class="radio-group">
-  <label wx:key="{{item.name}}" class="radio" wx:for="{{whoes}}">
-    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-  </label>
-</radio-group></label>  
-  <button hover-class="button-hover" type="primary" form-type='submit' > 提交 </button>
-  <button type="warming" form-type='reset' bindtap='initFrom'> 重置 </button>
-</form>
+    <view class='submitGroup'>
+      <button hover-class="button-hover" type="primary" form-type='submit'> 提交 </button>
+      <button type="warming" form-type='reset' bindtap='initFrom'> 重置 </button>
+
+    </view>
+  </form>
+</view>
