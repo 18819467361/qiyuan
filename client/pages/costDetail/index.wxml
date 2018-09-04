@@ -3,17 +3,20 @@
   <text>消费详情</text>
 </view>
 <view class='costNav'>
-  <view class="active">
+  <view id='gg' bindtap='showDetail' class='{{GGClass}}'>
     <view>哥葛</view>
     <view class='small'>已报销￥{{GGCost}}</view>
   </view>
-  <view>
+  <view bindtap='showDetail' id='mm' class='{{MMClass}}'>
     <view>宝贝</view>
     <view class='small'>已报销￥{{MMCost}}</view>
   </view>
 </view>
 <scroll-view scroll-y='true' class='scrollDetail'>
-  <view wx:for="{{GGCostList}}" wx:key='index'>
-    <list-item item='{{item}}'></list-item>
+  <view wx:for="{{renderList}}" wx:key='index'>
+  <view class='header'>{{item.dateFlag}}报销：{{item.sum}}</view>
+    <view wx:for="{{item.item}}" wx:key='index'>
+      <list-item item='{{item}}'></list-item>
+    </view>
   </view>
 </scroll-view>

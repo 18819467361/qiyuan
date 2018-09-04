@@ -67,7 +67,7 @@ var sortList = (costList) => {
   let GGCostList = [];
   let MMCostList = [];
   costList.forEach((item) => {
-    if(item.name = '哥葛'){
+    if(item.name == '哥葛'){
       GGCostList.push(item);
     } else {
       MMCostList.push(item);
@@ -82,9 +82,49 @@ var sortList = (costList) => {
 var totalCost = (costList) => {
   let sum = 0;
   costList.forEach((item) => {
-    sum += Number(item.cost);
+    sum += Number(item.sum);
   })
   return sum;
 } 
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, validateForm, surplus, sortList, totalCost}
+var sortByMonth = (costList) => {
+  let ret = [
+    {
+      dateFlag: '',
+      item:[],
+      sum: 0,
+    }
+  ]
+  console.log(costList,'constList')
+  let index = 0;
+  costList.forEach((item)=> {
+    let flag = new Date(item.time).getFullYear() + '年' + new Date(item.time).getMonth()+'月';
+    item = {...item,sortDate:flag};
+    console.log(item,'item');
+    if(ret[0].dateFlag==''){
+      ret[0].dateFlag = item.sortDate;
+      ret[0].item.push(item);
+      ret[0].sum += Number(item.cost);
+    } else{
+      if(ret[index].dateFlag == item.sortDate){
+        ret[index].item.push(item);
+        ret[index].sum += Number(item.cost);
+      }else{
+        index++;
+        ret[index] = {
+          dateFlag: '',
+          item: [],
+          sum: 0,
+        }
+        ret[index].dateFlag = item.sortDate
+        ret[index].item.push(item)
+        ret[index].sum += Number(item.cost);
+      }
+    }
+  })
+  console.log(ret, 'rett')
+  return ret;
+  
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, validateForm, surplus, sortList, totalCost, sortByMonth}

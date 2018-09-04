@@ -11,7 +11,7 @@ Page({
     date:'0',//日期
     money: '',//金额
     whoes:[
-      { value: '哥葛', name: '哥葛', checked: true},
+      { value: '哥葛', name: '哥葛'},
       { value: '宝贝', name:'宝贝'}
       ],
     markers: [],

@@ -8,13 +8,7 @@ Page({
   data: {
     total: 1000,
     balance: 1000,
-    spendList: [{
-      kind: '糖水',
-      location: '车陂',
-      cost: 12,
-      name:'叶嘉源',
-      time:'2018/8/20'
-    }],
+    spendList: [],
     moneyList:[100,200,500,1000]
   },
 
